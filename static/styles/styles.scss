@@ -1,0 +1,214 @@
+
+
+@import 'global';
+@import 'single-product';
+@import 'log-signup';
+@import 'form';
+@import 'header';
+@import 'side-nav';
+@import 'dashboard';
+@import 'order-customer';
+
+
+
+
+/* -------------MEDIA QUERY SECTION--------------------*/
+
+
+/* screen is 600px or change the container of the product form size to take more space */
+@media screen and (max-width: 920px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn, .signupbtn {
+        width: 100%;
+     }
+     .container-signup {
+         width: 80%;
+         min-height: 70vh;
+         margin-top: 5rem;
+         padding: 1rem 3rem;
+         margin-top: 2rem;
+     }
+}
+/* chnage the width of the form and container signin and sign up*/
+@media screen and (max-width: 900px)
+{
+  .sign-log-form{
+    width: 95%;
+  }
+  .container {
+      width: 90%;
+      margin: 4rem auto;
+  }
+}
+     
+/* ------------header section-------------- */
+/* when the screen is greater than 800px, do not show the drowpdown button */
+@media screen and (min-width: 800px) {
+  div .dropbtn {
+      display: none;
+  }
+
+}
+@media screen and (max-width: 800px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  nav .nav-links {
+    background-color: #555
+}
+
+.right{
+  min-width: 50%;
+  overflow: visible;
+  
+}
+
+@media screen and (max-width: 430) {
+  .right {
+    width: 100%;
+    float: none;
+  }
+  
+}
+
+  /*------side bar section--------------------*/
+/* when the screen is less thna  than 800px, do not show the side bar menue */
+  .nav-links{
+    display: none;
+}
+  
+/*-----------------table section ---------------*/
+.table {
+  overflow: scroll;
+}
+
+}
+
+
+/* order style template mobile view ------------------*/
+
+@media screen and (max-width: 800px) {
+  .flex-main{
+      min-height: 50vh;
+      width: 95%;
+      margin: auto;
+  }
+
+  /*-------------customer mobile view------------*/
+  .flex-main {
+    padding-bottom: 2rem;
+  }
+}
+
+/*------when the sceen is 600 or less order style chnage*/
+@media screen and (max-width: 600px) {
+.no-show-mobile {
+  display: none;
+  
+}
+
+.mobile-text {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem 0rem;
+  align-items: center;
+  min-width: 90%;
+}
+
+.mobile-text h3 {
+padding: 0.5rem 2rem 0.5rem 2rem;
+}
+
+.mobile-text p {
+  padding: 0.5rem 3rem 0.5rem 2rem;
+  
+}
+
+/*----------------customer mobile view------------------*/
+
+.title {
+  font-size: large;
+}
+.customer {
+  padding: 1.5rem;
+}
+.details {
+  flex-direction: column;
+  width: 95%;
+  min-height: 90%;
+  padding: 2rem 0.5rem;
+}
+
+.tiem1 { grid-area: country;}
+.tiem2 { grid-area: state;}
+.tiem3 { grid-area: address;}
+.tiem4 { grid-area: card-number;}
+
+.tiem5 { grid-area: name;}
+.tiem6 { grid-area: email;}
+.tiem7 { grid-area: phone;}
+.tiem8 { grid-area: card;}
+
+.customer-text{
+  width: 100%;
+  flex: 1 1;
+  display: grid;
+  grid-template-areas: 
+  'name email'
+  'phone card';
+  gap: 0.5rem;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 0.5rem;
+  border: 0.02rem solid;
+  border-radius: 0.3rem 0.3rem 0rem 0rem;
+}
+.customer-text2 {
+  width: 100%;
+  flex: 1 1;
+  display: grid;
+  grid-template-areas: 
+  'country state'
+  'adress card';
+  gap: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  justify-content: space-around;
+  align-items: center;
+  border: 0.02rem solid;
+  border-radius: 0rem 0rem 0.3rem 0.3rem;
+}
+
+.tiem1 { grid-area: country;}
+.tiem2 { grid-area: state;}
+.tiem3 { grid-area: address;}
+.tiem4 { grid-area: card-number;}
+
+
+}

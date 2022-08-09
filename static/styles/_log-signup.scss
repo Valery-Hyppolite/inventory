@@ -1,0 +1,95 @@
+
+
+.sign-log-form {
+    height: 90%;
+    width: 80%;
+    margin: 3rem auto;
+    padding: 2rem 0rem;
+    background: linear-gradient(to right, rgba(238, 238, 238, 0.7), rgba(204, 211, 209, 0.5));
+    backdrop-filter: blur(5rem);
+    border-radius: 1rem;
+   
+  }
+  input[type=text], input[type=password] {
+  width: 100%;
+  padding: 1rem 1rem;
+  margin: 0.5rem 0rem;
+  display: inline-block;
+  border: none;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  border: solid 0.03rem black;
+  
+  }
+  
+  .signupbtn {
+  background-color: #c1cac8;
+  color: black;
+  padding: 1rem 1rem;
+  margin: 0.5rem 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 0.5rem;
+  }
+  
+  input:hover {
+    box-shadow: 0 0.1rem 0.2rem 0 rgba(0,0,0,2);
+    border: 0.1rem solid #c1cac8 ;
+    
+  }
+  
+   .container-signup button:hover {
+    box-shadow: 0 0.1rem 0.2rem 0 rgba(0,0,0,2);
+   
+  }
+  
+  .cancelbtn {
+  width: auto;
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+  background-color: #eb868b;
+  border-color: 0.5rem solide #d9ddd0;
+  border-radius: 0.5rem;
+  border: none;
+  margin: 0.5rem 0;
+  }
+  
+  .container {
+  background-color: #c1cac8;
+  width: 50%;
+  min-height: 80vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem 3rem;
+  margin: auto;
+  border-radius: 1rem;
+  background: rgba(255,255,255, 0.7);
+  backdrop-filter: blur(2rem);
+  
+  }
+  
+  .container[type=submit]:hover{
+    box-shadow: 0 0.1rem 0.2rem 0 rgba(0,0,0,2);
+  }
+  
+  span.psw {
+  float: right;
+  padding-top: 2rem;
+  }
+  
+  .container p {
+    margin-bottom: 1rem;
+    
+  }
+  
+  .container h1 {
+    margin: 1rem 0;
+  }
+  
+  .container-signup {
+    margin-bottom: 2rem 0;
+  }

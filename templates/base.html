@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500;800&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+</head>
+
+<body>
+
+    <header class="head">
+
+        <div class="topnav" id="myTopnav">
+            <a id='logo' href="#home" class="active">
+                <img src="imgs/iconmonstr-medium-1.svg" alt="LOGO" />
+            </a>
+            <a href="#news"><i class="fa fa-fw fa-user"></i>Login</a>
+
+            <div class="dropdown">
+                <button class="dropbtn">Dropdown
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Products</a>
+                    <a href="#">Orders</a>
+                    <a href="#">Cutomers</a>
+                </div>
+            </div>
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+
+        <form class="right" action="#" method="get">
+            <input type="search" name="query_serach" value="" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+    </header>
+
+    {% block content %}
+
+
+
+
+
+    {% endblock %}
+
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>

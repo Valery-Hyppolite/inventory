@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<form class='sign-log-form' action="" method="POST">
+    {% csrf_token %}
+    <div class="container-signup">
+        <h1>Add Product</h1>
+        {% for field in form %}
+
+        <label for="text"><b>{{field.label}}</b></label>
+        {{field}}
+        <input type="text" name="text" required>
+        {% endfor %}
+
+        <button type="button" class="cancelbtn">
+            <a href="{% url 'customers' %}">Cancel</a></button>
+        <button type="submit" class="signupbtn">Add Product</button>
+    </div>
+</form>
+
+
+{% endblock%}

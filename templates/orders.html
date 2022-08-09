@@ -1,0 +1,51 @@
+{% extends 'base.html'%}
+{% block content %}
+
+
+<main>
+    {% include 'side-nav.html' %}
+    <div class="flex-main">
+        <h1 class='title'> Orders</h1>
+        <p><a href="{% url 'add_order' %}">add</a></p>
+        <p><a href="#">DELETE</a></p>
+        {% for order in orders %}
+        <div class="flex-vertical">
+            <div class="top-sect">
+                <div>
+                    <h3>Order placed</h2>
+                        <p>{{order.date}}</p>
+                </div>
+
+                <div class="no-show-mobile">
+                    <h3>Total</h2>
+                        <p>{{order.get_total_total}}</p>
+                </div>
+
+                <div>
+                    <h3>order number</h3>
+                    <p>{{order.id}}
+                    </p>
+                </div>
+
+            </div>
+            <hr>
+            <div class="bottom-sect">
+                <a href="{% url 'order' order.id %}"><img class="no-show-mobile" src="imgs/iconmonstr-credit-card-1.svg"
+                        alt=""></a>
+                <div class="no-show-mobile">
+                    <h3>Customer Name</h3>
+                    <p><a href="{% url 'order' order.id %}">{{order.customer.first_name}}
+                            {{order.customer.last_name}}</a></p>
+                </div>
+
+                <div class="mobile-text">
+                    <h3>Item</h3>
+                    <p>{{order.get_total_item}}</p>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock%}

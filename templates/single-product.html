@@ -1,0 +1,69 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<div class="cards">
+
+    <div class='card-title'>
+        <button><a href="{% url 'products' %}">Go Back</a></button>
+        <h1>Product Details</h1>
+    </div>
+
+    <div class="flex">
+
+        <div class="card">
+            <h4><b>Category</b></h4>
+            <img src="imgs/iconmonstr-currency-3.svg" alt="Avatar" />
+            <p>{{product.category}}</p>
+        </div>
+
+        <div class="card">
+            <h4><b>Product Name</b></h4>
+            <div>
+                <img src="imgs/iconmonstr-product-13.svg" alt="Avatar">
+            </div>
+            <p>{{product.name}}</p>
+        </div>
+
+        <div class="card">
+            <h4><b>Price Per Item</b></h4>
+            <img src="imgs/iconmonstr-currency-3.svg" alt="Avatar" />
+            <p>{{product.price}}</p>
+        </div>
+
+        <div class="card">
+            <h4><b>Revenue</b></h4>
+            <img src="imgs/iconmonstr-coin-10.svg" alt="Avatar" />
+            <p>{{product.get_revenue}}</p>
+        </div>
+        <div class="card">
+            <h4><b>Profit/Loss</b></h4>
+            <img src="imgs/iconmonstr-building-23.svg" alt="Avatar" />
+            <p>{{product.get_profit}}</p>
+        </div>
+
+        <div class="card">
+            <h4><b>Quantity Sold</b></h4>
+            <img src="imgs/iconmonstr-product-8.svg" alt="Avatar" />
+            <p>{{product.get_product_sold}}</p>
+        </div>
+
+        <div class="card">
+            <h4><b>Quantity In Stock</b></h4>
+            <img src="imgs/iconmonstr-building-23.svg" alt="Avatar" />
+            <p>{{product.get_product_instock}}</p>
+        </div>
+
+        <div class="card">
+            <h4><b>Total Cost</b></h4>
+            <img src="imgs/iconmonstr-building-23.svg" alt="Avatar" />
+            <p>{{product.total_cost}}</p>
+        </div>
+        <div class="card">
+            <h4><b>Stock Date</b></h4>
+            <img src="imgs/iconmonstr-calendar-thin.svg" alt="Avatar" />
+            <p>{{product.stock_date}}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

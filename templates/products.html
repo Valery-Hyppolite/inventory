@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+{% block content %}
+<main>
+    {% include 'side-nav.html' %}
+
+    <section class="main-grids">
+
+        <div class="table">
+            <table class="table1">
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity Sold</th>
+                    <th>Quantity In Stock</th>
+                    <th>add</th>
+                    <th>edit</th>
+                    <th>delte</th>
+                </tr>
+                {% for product in products %}
+                <tr>
+                    <td><a href="{% url 'product' product.id%}">{{product.name}}</a></td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.get_product_sold}}</td>
+                    <td>{{product.get_product_instock}}</td>
+                    <td>
+                        <a href="{% url 'add_product' %}">+</a>
+                    </td>
+                    <td>
+                        <a href=""></a>
+                    </td>
+                    <td>
+                        <a href="#"></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+
+    {% endblock %}
+</main>

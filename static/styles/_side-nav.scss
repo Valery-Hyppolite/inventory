@@ -1,0 +1,45 @@
+
+main {
+    display: flex;
+    width: 95%;
+    min-height: 90vh;
+    margin: 0 auto 5rem auto;
+    background: linear-gradient(to right, rgba(238, 238, 238, 0.7), rgba(204, 211, 209, 0.5));
+    backdrop-filter: blur(5rem);
+    border-radius: 1rem;
+  }
+  .nav-links {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 3rem;
+    background: rgba(255,255,255, 0.7);
+  }
+  
+  .nav-links li {
+    padding: 2rem 1rem;
+    list-style: none;
+  
+  }
+  
+  .nav-links img {
+    padding: 0 0.5rem;
+  }
+  
+  .main-grids {
+   min-width: 10vh;
+    
+  }
+  
+  .nav-links a {
+    color: black;
+    font-weight: 800;
+    font-size: large;
+  }
+  
+  .avatar {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+  }
