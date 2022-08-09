@@ -1,5 +1,4 @@
-{% extends 'base.html'%}
-{% block content %}
+{% extends 'base.html'%} {% block content %}
 <main>
     {% include 'side-nav.html' %}
 
@@ -14,7 +13,7 @@
                     <th>Quantity In Stock</th>
                     <th>add</th>
                     <th>edit</th>
-                    <th>delte</th>
+                    <th>delete</th>
                 </tr>
                 {% for product in products %}
                 <tr>
@@ -26,10 +25,10 @@
                         <a href="{% url 'add_product' %}">+</a>
                     </td>
                     <td>
-                        <a href=""></a>
+                        <a href="{% url 'update_product' product.id %}">--</a>
                     </td>
                     <td>
-                        <a href="#"></a>
+                        <a href="{% url 'delete_product' product.id %}">-</a>
                     </td>
                 </tr>
                 {% endfor %}

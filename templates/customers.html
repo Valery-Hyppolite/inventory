@@ -1,5 +1,4 @@
-{% extends 'base.html'%}
-{% block content %}
+{% extends 'base.html'%} {% block content %}
 
 
 <main>
@@ -7,6 +6,7 @@
     <div class="flex-main">
         <h1 class='title'> Customers</h1>
         <p><a href="{% url 'add_customer' %}">add</a></p>
+        <p><a href="#">EDIT</a></p>
         <p><a href="#">DELETE</a></p>
         {% for customer in customers %}
         <div class="flex-vertical">
@@ -30,8 +30,7 @@
             </div>
             <hr>
             <div class="bottom-sect">
-                <a href="{% url 'customer' customer.id %}"><img class="no-show-mobile"
-                        src="imgs/iconmonstr-credit-card-1.svg" alt=""></a>
+                <a href="{% url 'customer' customer.id %}"><img class="no-show-mobile" src="imgs/iconmonstr-credit-card-1.svg" alt=""></a>
                 <div class="no-show-mobile">
                     <h3>eidt</h3>
                     <p><a href="#">{{customer.first_name}}</a></p>

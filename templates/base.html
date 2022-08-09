@@ -20,7 +20,7 @@
     <header class="head">
 
         <div class="topnav" id="myTopnav">
-            <a id='logo' href="#home" class="active">
+            <a id='logo' href="{% url 'new_orders' %}" class="active">
                 <img src="imgs/iconmonstr-medium-1.svg" alt="LOGO" />
             </a>
             <a href="#news"><i class="fa fa-fw fa-user"></i>Login</a>
@@ -44,13 +44,7 @@
         </form>
     </header>
 
-    {% block content %}
-
-
-
-
-
-    {% endblock %}
+    {% block content %} {% endblock %}
 
 
 

@@ -114,6 +114,55 @@ def add_order(request):
     context = {'form': form}
     return render(request, 'order_form.html', context)
 
+
+
+def update_product(request, pk):
+    product = Product.objects.get(id=pk)
+    form = ProductForm(instance=product)
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return  redirect('products')
+    context = {'form': form, 'header': 'update'}
+    return render(request, 'form.html', context)
+
+
+def delete_product(request, pk):
+    product = Product.objects.get(id=pk)
+    form = ProductForm(instance=product)
+
+    if request.method == 'POST':
+            product.delete()
+            return  redirect('products')
+    context = {'form': form,  'header': 'delete'}
+    return render(request, 'form.html', context)
+
+
+def update_customer(request, pk):
+    customer = Customer.objects.get(id=pk)
+    form = CustomerForm(instance=customer)
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('customers')
+    
+    context = {'form': form}
+    return render(request, 'customer_form.html', context)
+
+def delete_customer(request, pk):
+    customer = Customer.objects.get(id=pk)
+    form = CustomerForm(instance=customer)
+    if request.method == 'POST':
+        customer.delete()
+        return redirect('customers')
+    
+    context = {'form': form}
+    return render(request, 'customer_form.html', context)
+
+
 #------------------view and search for products section --------------------------------
 # def view_products(request):
 #     products, search_query = search_products(request)
