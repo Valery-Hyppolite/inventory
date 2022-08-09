@@ -1,5 +1,5 @@
 # Inventory
-This is an inventory management system that tracks poducts, customers, and revenue. This application is made with django and will be deploy using AWS ElasticBeanstalk, route3, and cloud front. With this application everything is automated. Get instance view of every order made, evey customer added and evey item sold. 
+ An inventory management system that keeps track of all products, customers, orders, and system revenue.This website is made using Django and will be deploy with AWS ElasticBeastalk, Route53, Cloudfront,and PostSql database. Get automatic update instantly when orders are placed, customers are added. Add, edit and remove customers, and products anytime. Gte instance preview of revenue by product, and products.
 
 ![in1](https://user-images.githubusercontent.com/83102811/183741664-d5e785f8-b8c9-4f9a-9134-572d99857691.png)
 
