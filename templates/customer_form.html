@@ -1,20 +1,19 @@
-{% extends 'base.html'%}
-{% block content %}
+{% extends 'base.html'%} {% load static %} {% block content %}
 
 <form class='sign-log-form' action="" method="POST">
     {% csrf_token %}
     <div class="container-signup">
-        <h1>Add Product</h1>
+        <h1>Customer</h1>
         {% for field in form %}
 
-        <label for="text"><b>{{field.label}}</b></label>
-        {{field}}
-        <input type="text" name="text" required>
-        {% endfor %}
+        <label for="email"><b>{{field.label}}</b></label> {{field}}
+        <input type="text" name="email" required> {% endfor %}
 
         <button type="button" class="cancelbtn">
-            <a href="{% url 'customers' %}">Cancel</a></button>
-        <button type="submit" class="signupbtn">Add Product</button>
+            <a href="{% url 'customers' %}">Cancel</a></button> {% if header == "delete" %}
+        <button type="submit" class="signupbtn">Delete Customer</button> {% elif header == "update"%}
+        <button type="submit" class="signupbtn">  Save Customer</button> {% else %}
+        <button type="submit" class="signupbtn">Add Customer</button> {% endif %}
     </div>
 </form>
 

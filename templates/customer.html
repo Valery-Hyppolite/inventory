@@ -1,5 +1,4 @@
-{% extends 'base.html'%}
-{% block content %}
+{% extends 'base.html'%} {% load static %} {% block content %}
 
 <main>
     {% include 'side-nav.html' %}
@@ -27,8 +26,7 @@
             </div>
             <hr>
             <div class="bottom-sect">
-                <a href="{% url 'order' order.id %}"><img class="no-show-mobile" src="imgs/iconmonstr-credit-card-1.svg"
-                        alt=""></a>
+                <a href="{% url 'order' order.id %}"><img class="no-show-mobile" src="imgs/iconmonstr-credit-card-1.svg" alt=""></a>
                 <div class="no-show-mobile">
                     <h3>Customer Name</h3>
                     <p>{{order.customer.first_name}}{{order.customer.last_name}}</p>

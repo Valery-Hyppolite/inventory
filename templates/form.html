@@ -1,9 +1,9 @@
-{% extends 'base.html'%} {% block content %}
+{% extends 'base.html'%} {% load static %} {% block content %}
 
 <form class='sign-log-form' action="" method="POST">
     {% csrf_token %}
     <div class="container-signup">
-        <h1>Add Product</h1>
+        <h1>Product</h1>
         {% for field in form %}
 
         <label for="email"><b>{{field.label}}</b></label> {{field}}

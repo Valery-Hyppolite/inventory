@@ -149,7 +149,7 @@ def update_customer(request, pk):
             form.save()
             return redirect('customers')
     
-    context = {'form': form}
+    context = {'form': form, 'header': 'update'}
     return render(request, 'customer_form.html', context)
 
 def delete_customer(request, pk):
@@ -159,7 +159,7 @@ def delete_customer(request, pk):
         customer.delete()
         return redirect('customers')
     
-    context = {'form': form}
+    context = {'form': form, 'header': 'delete'}
     return render(request, 'customer_form.html', context)
 
 

@@ -140,7 +140,7 @@ class OrderItem(models.Model):
 
      @property
      def get_total(self):
-         """for each orderitem created, calculated the total price"""
+         """for each orderitem created, calculate the total price"""
          total = 0
          total = self.quantity * self.product.price
          return total

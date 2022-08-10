@@ -1,11 +1,11 @@
-{% extends 'base.html'%}
-{% block content %}
+{% extends 'base.html'%} {% load static %} {% block content %}
 
 <main>
     {% include 'side-nav.html' %}
 
     <div class="flex-main">
-        <h1 class='title'> Order Number: <p>{{order.id}}</h1>
+        <h1 class='title'> Order Number:
+            <p>{{order.id}}</h1>
         {% for item in orderitems %}
         <div class="flex-vertical">
             <div class="top-sect">
