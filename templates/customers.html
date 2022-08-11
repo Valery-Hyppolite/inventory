@@ -30,7 +30,7 @@
             </div>
             <hr>
             <div class="bottom-sect">
-                <a href="{% url 'customer' customer.id %}"><img class="no-show-mobile" src="imgs/iconmonstr-credit-card-1.svg" alt=""></a>
+                <a href="{% url 'customer' customer.id %}"><img class="no-show-mobile" src="{% static 'imgs/iconmonstr-credit-card-1.svg' %}" alt=""></a>
                 <div class="no-show-mobile">
                     <h3>Edit</h3>
                     <p><a href="#">{{customer.first_name}}</a></p>

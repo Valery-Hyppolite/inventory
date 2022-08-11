@@ -1,23 +1,24 @@
+{% load static %}
 <nav class="nav-links">
     <ul>
 
         <li>
-            <img src="imgs/iconmonstr-construction-10.svg" alt="Avatar" />
+            <img src="{% static 'imgs/iconmonstr-construction-10.svg'%}" alt="Avatar" />
             <a href="{% url 'new_orders' %}">Dashboard<i class="fab fa-buromobelexperte"></i></a>
         </li>
 
         <li>
-            <img src="imgs/iconmonstr-product-1.svg" alt="Avatar" />
+            <img src="{% static 'imgs/iconmonstr-product-1.svg'%}" alt="Avatar" />
             <a href="{% url 'products' %}">Products<i class="fab fa-buromobelexperte"></i></a>
         </li>
 
         <li>
-            <img src="imgs/iconmonstr-customer-1.svg" alt="Avatar" />
+            <img src="{% static 'imgs/iconmonstr-customer-1.svg' %}" alt="Avatar" />
             <a href="{% url 'customers' %}">Customers</a>
         </li>
 
         <li>
-            <img src="imgs/iconmonstr-delivery-10.svg" alt="Avatar" />
+            <img src="{% static 'imgs/iconmonstr-delivery-10.svg' %}" alt="Avatar" />
             <a href="{% url 'orders' %}">Orders</a>
         </li>
     </ul>

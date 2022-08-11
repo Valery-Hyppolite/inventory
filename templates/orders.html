@@ -29,7 +29,7 @@
             </div>
             <hr>
             <div class="bottom-sect">
-                <a href="{% url 'order' order.id %}"><img class="no-show-mobile" src="imgs/iconmonstr-credit-card-1.svg" alt=""></a>
+                <a href="{% url 'order' order.id %}"><img class="no-show-mobile" src="{% static 'imgs/iconmonstr-credit-card-1.svg' %}" alt="product img"></a>
                 <div class="no-show-mobile">
                     <h3>Customer Name</h3>
                     <p><a href="{% url 'order' order.id %}">{{order.customer.first_name}}
