@@ -114,7 +114,7 @@ def add_order(request):
     context = {'form': form}
     return render(request, 'order_form.html', context)
 
-
+#-------------------------------------UPDATE & DELETE ITEM SECTION--------------------------------
 
 def update_product(request, pk):
     product = Product.objects.get(id=pk)
