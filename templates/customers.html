@@ -13,12 +13,12 @@
             <div class="top-sect">
                 <div>
                     <h3>Customer Name</h2>
-                        <p>{{ customer.first_name}} {{ customer.last_name}}</p>
+                        <p>{{ customer.full_name}}</p>
                 </div>
 
                 <div class="no-show-mobile">
                     <h3>Phone Numer</h2>
-                        <p>{{customer.phone}}</p>
+                        <p>{{customer.email}}</p>
                 </div>
 
                 <div>
@@ -33,7 +33,7 @@
                 <a href="{% url 'customer' customer.id %}"><img class="no-show-mobile" src="{% static 'imgs/iconmonstr-credit-card-1.svg' %}" alt="Avatar"></a>
                 <div class="no-show-mobile">
                     <h3>Edit</h3>
-                    <p><a href="#">{{customer.first_name}}</a></p>
+                    <p><a href="#">{{customer.full_name}}</a></p>
                 </div>
 
                 <div class="mobile-text">

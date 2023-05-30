@@ -5,8 +5,6 @@
     {% include 'side-nav.html' %}
     <div class="flex-main">
         <h1 class='title'> Orders</h1>
-        <p><a href="{% url 'add_order' %}">add</a></p>
-        <p><a href="#">DELETE</a></p>
         {% for order in orders %}
         <div class="flex-vertical">
             <div class="top-sect">
@@ -32,8 +30,8 @@
                 <a href="{% url 'order' order.id %}"><img class="no-show-mobile" src="{% static 'imgs/iconmonstr-credit-card-1.svg' %}" alt="product img"></a>
                 <div class="no-show-mobile">
                     <h3>Customer Name</h3>
-                    <p><a href="{% url 'order' order.id %}">{{order.customer.first_name}}
-                            {{order.customer.last_name}}</a></p>
+                    <p><a href="{% url 'order' order.id %}">{{order.customer.full_name}}
+                            {{order.customer.full_name}}</a></p>
                 </div>
 
                 <div class="mobile-text">

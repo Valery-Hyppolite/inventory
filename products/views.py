@@ -1,8 +1,8 @@
 
 from multiprocessing import context
 from django.shortcuts import redirect, render
-from .models import Product, Order, Customer, OrderItem
-from .form import ProductForm, CustomerForm, OrderItemForm, OrderForm
+from .models import Product, Order, Customer, OrderItem, Shipping
+from .form import ProductForm, CustomerForm, OrderItemForm, OrderForm, ShippingForm
 from django.db.models import Q
 from .search_query import get_products_left_quantity, get_total_profit, get_total_sold, get_total_revenue
 
@@ -22,9 +22,11 @@ def view_new_orders(request):
 def view_order(request, pk):
     """SHOW ORDER DETAILS"""
     order = Order.objects.get(id=pk)
+    shipping = Shipping.objects.get(id=pk)
     order_items = order.orderitem_set.all()
+    
 
-    context = {'orderitems': order_items, 'order':order}
+    context = {'orderitems': order_items, 'order':order, 'shipping':shipping}
     return render(request, 'order.html', context)
 
 
@@ -163,6 +165,46 @@ def delete_customer(request, pk):
     return render(request, 'customer_form.html', context)
 
 
+def update_order(request, pk):
+    order = Order.objects.get(id=pk)
+    form = OrderForm(instance=order)
+
+    if request.method == 'POST':
+        if form.is_valid(): 
+            form.save() 
+            return redirect('orders')
+    context = {'form': form, 'header': "update"}
+    return render(request, 'order_form.html', context)
+
+
+def update_orderitem(request, pk):
+    order_item = OrderItem.objects.get(id=pk)
+    form = OrderItemForm(instance=order_item)
+
+    if request.method == 'POST':
+        form = OrderItemForm(request.POST, instance=order_item)
+        if form.is_valid():
+            form.save()
+            return redirect('orders')
+    context = {'form': form,'header': "update"}
+    return render(request, 'order_form.html', context)
+
+def update_shipping(request, pk):
+    shipping = Shipping.objects.get(id=pk)
+    form = ShippingForm(instance=shipping)
+
+    if request.method == 'POST':
+        form = ShippingForm(request.POST, instance=shipping)
+        if form.is_valid():
+            form.save()
+            return redirect('orders')
+    context = {'form': form,'header': "update"}
+    return render(request, 'order_form.html', context)
+
+
+
+
+
 #------------------view and search for products section --------------------------------
 # def view_products(request):
 #     products, search_query = search_products(request)
@@ -172,6 +214,20 @@ def delete_customer(request, pk):
 #     return render(request, 'dashboard.html', context)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+#################################STOP HERE, NOT PART OF THE CODE, IGNORE THE REST###################
+###############======================================================#################################
 #-------------------------------------ADD PRODUCTS -------------------------------------------
 
 # def add_product(request):

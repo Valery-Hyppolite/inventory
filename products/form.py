@@ -16,20 +16,23 @@ class CategoryForm(ModelForm):
 class ProductForm(ModelForm):
     class Meta:
         model   = Product
-        fields  = ['category', 'name', 'price', 'quantity', 'total_cost']
+        fields  = ['category', 'name', 'price', 'quantity', 'total_cost', 'product_img']
     
     def __init__(self, *arg, **kwargs):
        super(ProductForm, self).__init__(*arg, **kwargs)
 
-       for name, field in self.fields.items():
-           field.widget.attrs.update({'class': ''})
+       for field in self.fields:
+        self.fields[str(field)].widget.attrs.update(placeholder=f'{field}')
+
+    #    for name, field in self.fields.items():
+    #        field.widget.attrs.update({'class': ''})
 
 
 
 class OrderItemForm(ModelForm):
     class Meta:
         model = OrderItem
-        fields = ['product', 'order', 'quantity']
+        fields = ['product', 'quantity']
 
     def __init__(self, *arg, **kwargs):
        super(OrderItemForm, self).__init__(*arg, **kwargs)
@@ -38,17 +41,25 @@ class OrderItemForm(ModelForm):
 class OrderForm(ModelForm):
     class Meta:
         model = Order
-        fields = ['customer', 'street', 'state', 'country', 'zipcode', 'card', 'status']
+        fields = ['customer', 'status']
 
     def __init__(self, *arg, **kwargs):
        super(OrderForm, self).__init__(*arg, **kwargs)
+
+class ShippingForm(ModelForm):
+    class Meta:
+        model = Shipping
+        fields = ['street', 'city','state', 'country', 'zipcode', 'card']
+
+    def __init__(self, *arg, **kwargs):
+       super(ShippingForm, self).__init__(*arg, **kwargs)
 
 
 
 class CustomerForm(ModelForm):
     class Meta:
         model = Customer
-        fields = ['first_name','last_name', 'email', 'phone']
+        fields = ['user','full_name','email', 'phone']
     
     def __init__(self, *arg, **kwargs):
         super(CustomerForm, self).__init__(*arg, **kwargs)

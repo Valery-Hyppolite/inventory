@@ -6,8 +6,8 @@
         <h1>Product</h1>
         {% for field in form %}
 
-        <label for="email"><b>{{field.label}}</b></label> {{field}}
-        <input type="text" name="email" required> {% endfor %}
+        <label for="product"><b>{{field.label}}</b></label> {{field}}
+        <input type="text" name="product" required> {% endfor %}
 
         <button type="button" class="cancelbtn">
             <a href="{% url 'products' %}">Cancel</a></button> {% if header == "delete" %}

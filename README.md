@@ -1,8 +1,3 @@
-from pickle import TRUE
-from django.db import models
-from django.contrib.auth.models import  User
-# Create your models here.
-
 class Catagory(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True )
 
@@ -14,10 +9,9 @@ class Product(models.Model):
     category     = models.ForeignKey(Catagory,null=True, blank=True, on_delete=models.SET_NULL)
     name         = models.CharField(max_length=200, blank=False, null=False)
     price        = models.DecimalField(max_digits=9, decimal_places=2, blank=False, null=False)
-    quantity     = models.IntegerField(null=False, blank=False, default=0)
+    quantity     = models.IntegerField(null=False, blank=False)
     total_cost   = models.DecimalField(max_digits=9, decimal_places=2, blank=False, null=False)
     stock_date   = models.DateField(auto_now=True)
-    product_img  = models.ImageField(null=True, blank=True, default='default.jpg')
 
     def __str__(self):
         return self.name
@@ -79,14 +73,13 @@ class Product(models.Model):
     
     
 class Customer(models.Model):
-    """when a user is delete it, delete the customer"""
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    full_name    = models.CharField(max_length=60, blank=False, null=False)
+    first_name   = models.CharField(max_length=60, blank=False, null=False)
+    last_name    = models.CharField(max_length=60, blank=False, null=False)
     email        = models.EmailField(blank=False, null=False)
     phone        = models.CharField(max_length=10,  blank=True, null=True)
 
     def __str__(self):
-        return self.full_name
+        return self.first_name
 
     @property 
     def get_customer_orders(self):
@@ -99,6 +92,11 @@ class Customer(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    street   = models.CharField(max_length=500, blank=False, null=False)
+    state    = models.CharField(max_length=200, blank=True, null=True)
+    country  = models.CharField(max_length=200, blank=False, null=False)
+    zipcode  = models.CharField(max_length=200, blank=True, null=True)
+    card     = models.DecimalField(max_digits=4, decimal_places=0, blank=False, null=False, default=4567)
     date     = models.DateField(auto_now=True)
     choices  = (
         ('PROCESSING', 'processing'),
@@ -106,7 +104,7 @@ class Order(models.Model):
         ('SHIPPED', 'shipped'),
         ('DELIVERED', 'Archived')
     )
-    status = models.CharField(max_length=20, choices=choices, default='PROCESSING')
+    status = models.CharField(max_length=20, choices=choices, default='DELIVERED')
 
     def __str__(self):
         return str(self.id)
@@ -143,18 +141,3 @@ class OrderItem(models.Model):
 
      def __str__(self):
         return self.product.name
-     
-class Shipping(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
-    order    = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True, blank=True)
-    street   = models.CharField(max_length=500, blank=False, null=False)
-    city     = models.CharField(max_length=200, blank=True, null=True)
-    state    = models.CharField(max_length=200, blank=True, null=True)
-    country  = models.CharField(max_length=200, blank=False, null=False)
-    zipcode  = models.CharField(max_length=200, blank=True, null=True)
-    card     = models.DecimalField(max_digits=4, decimal_places=0, blank=False, null=False, default=4567)
-
-    def __str__(self) -> str:
-        return self.street
-
-    

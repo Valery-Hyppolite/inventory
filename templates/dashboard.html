@@ -42,20 +42,20 @@
                 <tr>
                     <td>{{order.id}}</td>
                     <td>
-                        <a href="{% url 'order' order.id %}">{{order.customer.first_name}}</a>
+                        <a href="{% url 'order' order.id %}">{{order.customer.full_name}}</a>
                     </td>
                     <td>{{order.get_total_item}}</td>
                     <td>${{order.get_total_total}}</td>
                     <td>{{order.status}}</td>
                     <td>{{order.date}}</td>
                     <td>
-                        <a href="{% url 'order' order.id %}">{{order.customer.first_name}}</a>
+                        <a href="{% url 'order' order.id %}">{{order.customer.full_name}}</a>
                     </td>
                     <td>
-                        <a href="{% url 'order' order.id %}">{{order.customer.first_name}}</a>
+                        <a href="{% url 'order' order.id %}">{{order.customer.full_name}}</a>
                     </td>
                     <td>
-                        <a href="{% url 'order' order.id %}">{{order.customer.first_name}}</a>
+                        <a href="{% url 'order' order.id %}">{{order.customer.full_name}}</a>
                     </td>
                 </tr>
                 {% endfor %}

@@ -4,13 +4,13 @@
     {% include 'side-nav.html' %}
 
     <div class="flex-main">
-        <h1 class='title'> Order Number:
-            <p>{{order.id}}</h1>
+        <h2 class='title'> Order Number: <span>{{order.id}}</span></h2>
         {% for item in orderitems %}
         <div class="flex-vertical">
             <div class="top-sect">
+                <h4><a href="{% url 'update_orderitem' item.id %}">Edit</a></h4>
                 <div>
-                    <h3>Product Name</h2>
+                    <h3>Product Name</h3>
                         <p>{{item.product.name}}</p>
                 </div>
 
@@ -25,7 +25,7 @@
                         {{item.product.category.name}}
                     </p>
                 </div>
-            </div>
+            </div>   
 
             <hr>
             <div class="bottom-sect">
@@ -44,79 +44,11 @@
         </div>
         {%endfor%}
 
-        <!-- <div class="flex-vertical">
-            <div class="top-sect">
-                <div>
-                    <h3>Product Name</h2>
-                        <p>Skirt blue blouse</p>
-                </div>
-
-                <div class="no-show-mobile"> -->
-        <!-- <h3>Total</h2>
-                            <p>1235</p> -->
-        <!-- </div>
-
-                <div>
-                    <h3>Product ID</h3>
-                    <p>012354788-44-744
-                    </p>
-                </div>
-
-            </div>
-            <hr>
-            <div class="bottom-sect">
-                <img class="no-show-mobile" src="imgs/iconmonstr-credit-card-1.svg" alt="">
-                <div class="no-show-mobile">
-                    <h3>Total</h3>
-                    <p>567</p>
-                </div>
-
-                <div class="mobile-text">
-                    <h3>Item</h3>
-                    <p>14</p>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div class="flex-vertical">
-            <div class="top-sect">
-                <div>
-                    <h3>Product Name</h2>
-                        <p>Skirt blue blouse</p>
-                </div>
-
-                <div class="no-show-mobile">
-                    <h3>Total</h2>
-                            <p>1235</p>
-                </div>
-
-                <div>
-                    <h3>Product ID</h3>
-                    <p>012354788-44-744
-                    </p>
-                </div>
-
-            </div>
-            <hr>
-            <div class="bottom-sect">
-                <img class="no-show-mobile" src="imgs/iconmonstr-credit-card-1.svg" alt="">
-                <div class="no-show-mobile">
-                    <h3>Total</h3>
-                    <p>567</p>
-                </div>
-
-                <div class="mobile-text">
-                    <h3>Item</h3>
-                    <p>14</p>
-                </div>
-            </div>
-        </div> -->
-
-
         <div class="customer">
             <div class="customer-detail">
                 <div>
-                    <h3>Customer Shipping Details</h2>
+                    <h3>Customer Shipping Details</h3>
+                    <h4><a href="{% url 'update_shipping' shipping.id %}">Edit</a></h4>
                 </div>
             </div>
             <hr>
@@ -125,17 +57,17 @@
                 <div class="customer-text">
                     <div class="item5">
                         <img src="imgs/iconmonstr-generation-12.svg" alt="">
-                        <p><a href="{% url 'customer' order.customer.id %}">{{order.customer.first_name}},
-                                {{order.customer.last_name}}</a></p>
+                        <p><a href="{% url 'customer' order.customer.id %}">{{shipping.customer.full_name}},
+                                </a></p>
                     </div>
                     <div class="item6">
                         <img src="imgs/iconmonstr-email-1.svg" alt="">
-                        <p>{{order.customer.email}}</p>
+                        <p>{{shipping.customer.email}}</p>
                     </div>
 
                     <div class="item7">
                         <img src="imgs/iconmonstr-smartphone-9.svg" alt="">
-                        <p>{{order.customer.phone}}</p>
+                        <p>{{shipping.customer.phone}}</p>
                     </div>
 
                     <div class="item8">
@@ -148,19 +80,19 @@
                 <div class="customer-text2">
                     <div class="item1">
                         <h3>Country</h3>
-                        <p>{{order.country}}</p>
+                        <p>{{shipping.country}}</p>
                     </div>
                     <div class="item2">
                         <h3>State</h3>
-                        <p>{{order.state}}</p>
+                        <p>{{shipping.state}}</p>
                     </div>
                     <div class="item3">
                         <h3>Address</h3>
-                        <P>{{order.street}}</P>
+                        <P>{{shipping.street}}</P>
                     </div>
                     <div class="item4">
                         <h3>Card number</h3>
-                        <p>{{order.card}}</p>
+                        <p>{{shipping.card}}</p>
                     </div>
 
                 </div>
