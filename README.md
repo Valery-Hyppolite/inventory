@@ -9,9 +9,9 @@ Automatically calculate profits and losses for each and all products across the 
 * Check customers' information and see all orders associated with each customer. 
 
 ## # Deployement
-Created both a local and deployment docker file
-Packaged project with docker-comapose
-Deployed project on AWS EC2 instance with docker
+* Created both a local and deployment docker file
+* Packaged project with docker-comapose
+* Deployed project on AWS EC2 instance with docker
 
 
 
