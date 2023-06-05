@@ -5,13 +5,9 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-_8$viqnjbn-im%cb%5owiwc3%&iwv1=izg=w$90azww*d2vmn^'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = True
-
-# SECRET_KEY = os.environ.get("SECRET_KEY")
-# DEBUG = str(os.environ.get("DEBUG"))
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split()
 
 # Application definition
 
@@ -71,44 +67,27 @@ WSGI_APPLICATION = 'productInventory.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ.get("DB_HOST"),
-        'NAME': os.environ.get("DB_NAME"),
-        'USER': os.environ.get("DB_USER"),
-        'PASSWORD': os.environ.get("DB_PASSWORD")
-    }
+'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'HOST': os.environ.get("DB_HOST"),
+    'NAME': os.environ.get("DB_NAME"),
+    'USER': os.environ.get("DB_USER"),
+    'PASSWORD': os.environ.get("DB_PASS")
 }
 
-# POSTGRESS_DB = os.environ.get("POSTGRESS_DB")
-# POSTGRESS_PASSWRD = os.environ.get("POSTGRESS_PASSWRD")
-# POSTGRESS_USER = os.environ.get("POSTGRESS_USER")
-# POSTGRESS_HOST = os.environ.get("POSTGRESS_HOST")
-# POSTGRESS_PORT = os.environ.get("POSTGRESS_PORT")
+}
 
-# DB_IS_AVAILABLE = all([
-#     POSTGRESS_DB,
-#     POSTGRESS_PASSWRD,
-#     POSTGRESS_USER,
-#     POSTGRESS_HOST,
-#     POSTGRESS_PORT
-# ])
 
-# POSTGRESS_READY = str(os.environ.get("POSTGRESS_READY")) == "1"
-
-# if DB_IS_AVAILABLE and POSTGRESS_READY:
-#     DATABASES = {
+# DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': POSTGRESS_DB,
-#         "USER": POSTGRESS_USER,
-#         "PASSWORD": POSTGRESS_PASSWRD,
-#         "HOST": POSTGRESS_HOST,
-#         "PORT": POSTGRESS_PORT
+#         'HOST': os.environ.get("LDB_HOST"),
+#         'NAME': os.environ.get("LDB_NAME"),
+#         'USER': os.environ.get("LDB_USER"),
+#         'PASSWORD': os.environ.get("LDB_PASSWORD")
 #     }
 # }
 
-print(DATABASES)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -146,7 +125,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # when running collectstatic, all files will be place in this directory call staticfiles
 
 MEDIA_URL = '/imgs/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/imgs') # tell django where to upload imgs upload by uers
@@ -155,3 +134,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/imgs') # tell django where to upload
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+if os.getcwd() == "/app":
+    DEBUG = False

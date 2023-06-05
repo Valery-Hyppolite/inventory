@@ -14,10 +14,10 @@ services:
     volumes:
       - .:/app
     environment:
-      - DB_HOST=db
-      - DB_NAME=devdb
-      - DB_USER=devuser
-      - DB_PASSWORD=changeme
+      - LDB_HOST=db
+      - LDB_NAME=devdb
+      - LDB_USER=devuser
+      - LDB_PASSWORD=changeme
     depends_on:
       - db    
   

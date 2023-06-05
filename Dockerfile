@@ -8,6 +8,7 @@ LABEL maintainer="InventoryDjangoApp"
 WORKDIR /app
 #RUN python -m env /opt/env
 COPY requirements.txt requirements.txt
+COPY entrypoint.sh entrypoint.sh
 # RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 EXPOSE 8000
@@ -17,11 +18,12 @@ EXPOSE 8000
 RUN  python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r requirements.txt
+    #chmod +x entrypoint.sh
     #useradd -m -s /bin/bash myapp
     
-ENV PATH="/py/bin:$PATH"
-#USER app
-#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+ENV PATH="entrypoint.sh:/py/bin:$PATH"
+# #USER app
+CMD ["sh", "entrypoint.sh"]
 
 
 # python -m venv /py && \

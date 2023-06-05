@@ -1,143 +1,28 @@
-class Catagory(models.Model):
-    name = models.CharField(max_length=100, blank=True, null=True )
+# Inventory System
+Inventory system that tracks all products, orders, and customers. Provides real-time updates across all products, orders, and profits.
+Automatically calculate profits and losses for each and all products across the store. 
 
-    def __str__(self):
-        return self.name
+## # Features
+* Add, update, and delete products and customers.
+* Automatically calculate profits and losses anytime changes occur such as new orders, updating products, new customers ect...
+* Check all orders and the customer associated with each order. 
+* Check customers' information and see all orders associated with each customer. 
 
-
-class Product(models.Model):
-    category     = models.ForeignKey(Catagory,null=True, blank=True, on_delete=models.SET_NULL)
-    name         = models.CharField(max_length=200, blank=False, null=False)
-    price        = models.DecimalField(max_digits=9, decimal_places=2, blank=False, null=False)
-    quantity     = models.IntegerField(null=False, blank=False)
-    total_cost   = models.DecimalField(max_digits=9, decimal_places=2, blank=False, null=False)
-    stock_date   = models.DateField(auto_now=True)
-
-    def __str__(self):
-        return self.name
-
-    #---------------------PER PRODUCT CALCULATIONS OF PRODUCTS INVENTORY------------------------
-    @property
-    def get_product_sold(self):
-        """for each product that is sold, calculate the total sold"""
-        sold = 0
-        orderitems = self.orderitem_set.all()
-        for item in orderitems:
-            if item.product.id == self.id:
-                sold = self.quantity - self.get_product_instock
-        return sold
-
-    @property
-    def get_product_instock(self):
-        """for each product that was sold, calculate the total the quantity left in store"""
-        current_stock = self.quantity
-        orderitems = self.orderitem_set.all()
-        sold_items = []
-        for item in orderitems:
-            if item.product.id == self.id:
-                sold_items.append(item.quantity)
-                current_stock = self.quantity - sum(sold_items)
-                # self.quantity = self.quantity - item.quantity
-        return current_stock
-
-    @property
-    def get_revenue(self):
-        revenue = 0
-        cost_per_item = self.total_cost/self.quantity
-        orderitem = self.orderitem_set.all()
-        products = []
-        for item in orderitem:
-            products.append(item.quantity)
-            print(f"products: {products}")
-            revenue = self.price * sum(products)
-            print(f"revenue: {revenue}")
-        return revenue
-
-    @property
-    def get_profit(self):
-        profit = 0
-        cost_per_item = self.total_cost/self.quantity
-        orderitem = self.orderitem_set.all()
-        # profit = sum([(item.get_revenue -sum(item)) for item in orderitem])
-        products = []
-        for item in orderitem:
-            products.append(item.quantity)
-            print(f"products: {products}")
-            pre_revenue = self.price * sum(products)
-            profit = pre_revenue - (cost_per_item * sum(products))
-            print(f"pre revenue: {pre_revenue}")
-            print(f"profit: {profit}")
-        return profit
-        
-    # -----------------TOTAL CALCULATION OF PRODUCTS INVENTOTY ---------------------------   
-    
-    
-class Customer(models.Model):
-    first_name   = models.CharField(max_length=60, blank=False, null=False)
-    last_name    = models.CharField(max_length=60, blank=False, null=False)
-    email        = models.EmailField(blank=False, null=False)
-    phone        = models.CharField(max_length=10,  blank=True, null=True)
-
-    def __str__(self):
-        return self.first_name
-
-    @property 
-    def get_customer_orders(self):
-        orders = self.order_set.all()
-        total_orders = len([order.id for order in orders])
-        return total_orders
-
-    
-                    
-
-class Order(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
-    street   = models.CharField(max_length=500, blank=False, null=False)
-    state    = models.CharField(max_length=200, blank=True, null=True)
-    country  = models.CharField(max_length=200, blank=False, null=False)
-    zipcode  = models.CharField(max_length=200, blank=True, null=True)
-    card     = models.DecimalField(max_digits=4, decimal_places=0, blank=False, null=False, default=4567)
-    date     = models.DateField(auto_now=True)
-    choices  = (
-        ('PROCESSING', 'processing'),
-        ('FUFILLED', 'fufilled'),
-        ('SHIPPED', 'shipped'),
-        ('DELIVERED', 'Archived')
-    )
-    status = models.CharField(max_length=20, choices=choices, default='DELIVERED')
-
-    def __str__(self):
-        return str(self.id)
-    
-    @property
-    def get_total_item(self):
-        """for each order, get the total quantity of orderitems"""
-        total_quantity = 0
-        orderitems = self.orderitem_set.all()
-        total_quantity = sum([(item.quantity) for item in orderitems])
-        return total_quantity
-
-    @property
-    def get_total_total(self):
-        """for each oder, sum the total orderitem total price. sum the get_total price"""
-        total = 0
-        orderitems = self.orderitem_set.all()
-        total = sum([(item.get_total) for item in orderitems ])
-        return total
-
-    
-class OrderItem(models.Model):
-     product  = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-     order  = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True, blank=True)
-     quantity = models.IntegerField(null=False, blank=False, default=1)
-
-     @property
-     def get_total(self):
-         """for each orderitem created, calculate the total price"""
-         total = 0
-         total = self.quantity * self.product.price
-         return total
+## # Deployement
+Created both a local and deployment docker file
+Packaged project with docker-comapose
+Deployed project on AWS EC2 instance with docker
 
 
-     def __str__(self):
-        return self.product.name
+
+### Dashboard preview of your system.
+![in1](https://user-images.githubusercontent.com/83102811/183741664-d5e785f8-b8c9-4f9a-9134-572d99857691.png)
+
+### Inventory of each product in stock and their revenue.
+![in2](https://user-images.githubusercontent.com/83102811/183746658-71ac2104-55dc-4774-836b-970a7a8d4f94.png)
+
+### Customer order history
+![dash1](https://user-images.githubusercontent.com/83102811/212495699-88cf3943-68fc-436e-a029-aefb7bdb91ca.png)
+
+### Order information
+![dash2](https://user-images.githubusercontent.com/83102811/212495733-53a0e45e-a8d0-48d8-86f5-f1f07cdbf364.png)
