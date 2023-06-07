@@ -40,7 +40,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - static-data:/staticfiles
+      - static-data:/app/staticfiles
 
 volumes:
   postgres-data:
