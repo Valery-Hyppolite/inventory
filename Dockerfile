@@ -24,13 +24,3 @@ RUN  python -m venv /py && \
 ENV PATH="entrypoint.sh:/py/bin:$PATH"
 # #USER app
 CMD ["sh", "entrypoint.sh"]
-
-
-# python -m venv /py && \
-#     /py/bin/pip install --upgrade pip && \
-#     apk add --update --no-cache postgresql-client && \
-#     apk add --update --no-cache --virtual .tmp-deps \
-#         build-base postgresql-dev musl-dev && \
-#     /py/bin/pip install -r requirements.txt \
-#     apk del .tmp-deps
-#     #useradd -m -s /bin/bash myapp
