@@ -59,7 +59,7 @@ class ShippingForm(ModelForm):
 class CustomerForm(ModelForm):
     class Meta:
         model = Customer
-        fields = ['user','full_name','email', 'phone']
+        fields = ['full_name','email', 'phone']
     
     def __init__(self, *arg, **kwargs):
         super(CustomerForm, self).__init__(*arg, **kwargs)

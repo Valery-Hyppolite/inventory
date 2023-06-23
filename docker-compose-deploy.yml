@@ -20,8 +20,23 @@ services:
       - django_app
     ports:
       - 80:80
+      - 443:443
     volumes:
-      - static-data:/app/staticfiles
+      -  static-data:/app/staticfiles
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      #CREATED THE SAME VOLUME FOR BOTH CERTBOT AND NGINX, SO THEY BOTH HAVE ACCESS TO THE SSL CERTIFICATE
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+
+      
+#THIS WILL RUN CERBOT TO GET YOU ANS SSL CERT FOR YOUR DOMAIN. SET THIS CONFIGURATION ON THE DEPLOYMENT SERVER BEFORE RUNING DOCKER BUILD AND UP
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+    #THIS CREATE A VOLUME ON LOCAL EN AND ATTACHED IT TO THE DOCKER CONTAINER 
+      - ./data/certbot/conf:/etc/letsencrypt 
+      - ./data/certbot/www:/var/www/certbot
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email vavoov45@gmail.com -d inventory-system.devprojectspro.com --agree-tos
 
 volumes:
   static-data:

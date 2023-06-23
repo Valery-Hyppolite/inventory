@@ -121,7 +121,6 @@ def add_order(request):
 def update_product(request, pk):
     product = Product.objects.get(id=pk)
     form = ProductForm(instance=product)
-
     if request.method == 'POST':
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
@@ -134,7 +133,6 @@ def update_product(request, pk):
 def delete_product(request, pk):
     product = Product.objects.get(id=pk)
     form = ProductForm(instance=product)
-
     if request.method == 'POST':
             product.delete()
             return  redirect('products')
@@ -150,7 +148,6 @@ def update_customer(request, pk):
         if form.is_valid():
             form.save()
             return redirect('customers')
-    
     context = {'form': form, 'header': 'update'}
     return render(request, 'customer_form.html', context)
 
@@ -168,7 +165,6 @@ def delete_customer(request, pk):
 def update_order(request, pk):
     order = Order.objects.get(id=pk)
     form = OrderForm(instance=order)
-
     if request.method == 'POST':
         if form.is_valid(): 
             form.save() 
@@ -180,7 +176,6 @@ def update_order(request, pk):
 def update_orderitem(request, pk):
     order_item = OrderItem.objects.get(id=pk)
     form = OrderItemForm(instance=order_item)
-
     if request.method == 'POST':
         form = OrderItemForm(request.POST, instance=order_item)
         if form.is_valid():
@@ -192,7 +187,6 @@ def update_orderitem(request, pk):
 def update_shipping(request, pk):
     shipping = Shipping.objects.get(id=pk)
     form = ShippingForm(instance=shipping)
-
     if request.method == 'POST':
         form = ShippingForm(request.POST, instance=shipping)
         if form.is_valid():
