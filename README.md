@@ -1,11 +1,9 @@
 # Inventory System
-Inventory system that tracks all products, orders, and customers. Provides real-time updates across all products, orders, and profits.
-Automatically calculate profits and losses for each and all products across the store. 
+Introducing an inventory management system designed to efficiently track products, orders, and customers. With real-time updates, you can stay on top of your inventory, orders, and profits effortlessly. The system automatically calculates profits and losses, giving you valuable insights into the financial performance of each product and your overall store. Seamlessly packaged with docker-compose, this web application is deployed on AWS EC2 within a secure Virtual Private Cloud (VPC) environment.
 
 ## # Features
 * Add, update, and delete products and customers.
 * Automatically calculate profits and losses anytime changes occur such as new orders, updating products, new customers ect...
-* Check all orders and the customer associated with each order. 
 * Check customers' information and see all orders associated with each customer. 
 
 ## # Deployement

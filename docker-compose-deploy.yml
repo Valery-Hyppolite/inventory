@@ -28,15 +28,15 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
 
-      
-#THIS WILL RUN CERBOT TO GET YOU ANS SSL CERT FOR YOUR DOMAIN. SET THIS CONFIGURATION ON THE DEPLOYMENT SERVER BEFORE RUNING DOCKER BUILD AND UP
+
+#THIS WILL RUN CERBOT TO GET YOU AN SSL CERT FOR YOUR DOMAIN. SET THIS CONFIGURATION ON THE DEPLOYMENT SERVER BEFORE RUNING DOCKER BUILD AND DOCKER UP
   certbot:
     image: certbot/certbot:latest
     volumes:
-    #THIS CREATE A VOLUME ON LOCAL EN AND ATTACHED IT TO THE DOCKER CONTAINER 
+    #THIS CREATE A VOLUME ON LOCAL ENV AND ATTACHED IT TO THE DOCKER CONTAINER 
       - ./data/certbot/conf:/etc/letsencrypt 
       - ./data/certbot/www:/var/www/certbot
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email vavoov45@gmail.com -d inventory-system.devprojectspro.com --agree-tos
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email {your email} -d {your domain name} --agree-tos
 
 volumes:
   static-data:
