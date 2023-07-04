@@ -1,17 +1,21 @@
+
+#ACCESS VARIABLES FROM .ENV FILE
+data "external" "load_env" {
+  program = ["python", "-c", "import dotenv; dotenv.load_dotenv('.env')"]
+}
+
+data "external" "key_pair" {
+  program = ["python", "-c", "import os; print(os.getenv(''))"]
+}
+
+
 locals {
     env = "${terraform.workspace}"
 
-    MY_IP_env =  {
-        default    = "75.201.89.133/32"
-        staging    = "75.201.89.133/32"
-        production = "75.201.89.133/32"
-}
-    my_ip = "${lookup(local.MY_IP_env, local.env)}"
-
     keypair_env =  {
-        default     = "project-apps"
-        staging     = "project-apps"
-        production  = "project-apps"
+        default     = data.external.key_pair.result
+        staging     = data.external.key_pair.result
+        production  = data.external.key_pair.result
 }
     keypair = "${lookup(local.keypair_env, local.env)}"
 }
@@ -19,10 +23,6 @@ locals {
 #OUTPUTS
 output "env_suffix" {
     value = local.env
-}
-
-output "my_ip" {
-    value = local.my_ip
 }
 
 output "keypair" {
