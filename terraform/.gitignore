@@ -1,0 +1,13 @@
+# Exclude Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Exclude auto-generated files and directories
+.terraform/
+.tfvars
+.terraform.lock.hcl
+
+# Exclude temporary or sensitive files
+*.tmp
+*.secret
+*.env

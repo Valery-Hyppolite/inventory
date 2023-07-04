@@ -1,10 +1,15 @@
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+#SET UP PATH FOR ENV FILE ACCESS
+load_dotenv()
+env_path = Path(".")/'.env'
+load_dotenv(dotenv_path=env_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = True
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split()
@@ -59,38 +64,33 @@ WSGI_APPLICATION = 'productInventory.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
+
+
+if "DB_NAME" in os.environ and os.getcwd() == "/app":
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get("DB_HOST"),
+        'NAME': os.environ.get("DB_NAME"),
+        'USER': os.environ.get("DB_USER"),
+        'PASSWORD': os.environ.get("DB_PASS"),
+        'PORT': os.environ.get("PORT"),
+        'SSLMODE': os.environ.get("SSLMODE")
+    }
+
+}
+
+else:
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+    
+print(DATABASES)
 
-# DATABASES = {
-# 'default': {
-#     'ENGINE': 'django.db.backends.postgresql',
-#     'HOST': os.environ.get("DB_HOST"),
-#     'NAME': os.environ.get("DB_NAME"),
-#     'USER': os.environ.get("DB_USER"),
-#     'PASSWORD': os.environ.get("DB_PASS"),
-#     'PORT': os.environ.get("PORT"),
-#     'SSLMODE': os.environ.get("SSLMODE")
-# }
-
-#}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'HOST': os.environ.get("LDB_HOST"),
-#         'NAME': os.environ.get("LDB_NAME"),
-#         'USER': os.environ.get("LDB_USER"),
-#         'PASSWORD': os.environ.get("LDB_PASSWORD")
-#     }
-# }
-
-
-# assword validation
+# Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [

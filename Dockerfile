@@ -6,7 +6,6 @@ ENV PYTHONUNBUFFERED 1
 LABEL maintainer=" "
 
 WORKDIR /app
-RUN python -m env /opt/env
 COPY requirements.txt requirements.txt
 COPY entrypoint.sh entrypoint.sh
 COPY . .

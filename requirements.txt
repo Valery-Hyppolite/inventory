@@ -1,12 +1,13 @@
 asgiref==3.4.1
 awscli==1.27.33
 botocore
+boto3
 cement==2.8.2
 certifi==2022.12.7
 charset-normalizer==2.0.12
 colorama==0.4.3
 Django==4.0.1
-django-dotenv==1.4.2
+python-dotenv
 docutils==0.16
 future==0.16.0
 gunicorn==20.1.0
