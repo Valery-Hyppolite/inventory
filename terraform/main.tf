@@ -17,4 +17,5 @@ module "ec2_module" {
     source            = "./ec2_module"
     public_subnet1    = module.vpc_module.public_subnet1_output
     security_group_id = module.security_group_module.security_group_output
+    key_pair          = var.key_pair
 }

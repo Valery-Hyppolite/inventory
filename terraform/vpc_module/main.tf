@@ -1,10 +1,13 @@
+
 module "share_vars" {
     source = "../share_vars"
+
   
 }
 #Create VPC
 resource "aws_vpc" "project_vpc" {
   cidr_block       = "10.0.0.0/16"
+  enable_dns_hostnames = true
   tags = {
     Name = "main_project_vpc${module.share_vars.env_suffix}"
   }

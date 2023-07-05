@@ -4,6 +4,8 @@ module "share_vars" {
   
 }
 
+#variable "key_pair" {}
+
 #CREATE TWO VARIABLES FOR TO TAKE INPUTS FROM OTHER MODULES
 variable "public_subnet1" {}
 variable "security_group_id" {}
@@ -15,10 +17,10 @@ resource "aws_instance" "web_inventory" {
   subnet_id                 = var.public_subnet1
   vpc_security_group_ids    = [var.security_group_id]
   associate_public_ip_address = "true"
-  key_name                  = module.share_vars.keypair
+  key_name                  = var.key_pair
   user_data                 = file("${path.module}/user_data.sh")        
 
   tags = {
-    Name = "web_inventory_${module.share_vars.env_suffix}"
+    Name = "web_inventory-project-test_${module.share_vars.env_suffix}"
   }
 }
