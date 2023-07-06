@@ -4,9 +4,8 @@
 
 # Exclude auto-generated files and directories
 .terraform/
-.tfvars
+*.tfvars
 .terraform.lock.hcl
-variables.tf
 
 # Exclude temporary or sensitive files
 *.tmp
