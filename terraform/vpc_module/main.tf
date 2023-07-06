@@ -4,7 +4,7 @@ module "share_vars" {
 
   
 }
-#Create VPC
+#CREATE A  VPC
 resource "aws_vpc" "project_vpc" {
   cidr_block       = "10.0.0.0/16"
   enable_dns_hostnames = true
@@ -13,7 +13,7 @@ resource "aws_vpc" "project_vpc" {
   }
 }
 
-#CREATE TWO PUBLIC SUBNETS FOR THE VPC
+# CREATE TWO PUBLIC SUBNETS FOR THE VPC
 # WHEN CREATING A SUBNET, A ROUTE TABLE BY DEFAULT IS CREATED AND THE ASSOCIATED SUBNETS ARE ADDED TO IT. 
 # NO NEED TO CREATE A ROUTE TABLE UNLESS ONE WANTS TO DO THAT FOR SPECIFIC REASONS.
 resource "aws_subnet" "public_project_subnet1" {
@@ -36,10 +36,9 @@ resource "aws_subnet" "public_project_subnet2" {
   }
 }
 
-
 #CREATE AN INTERNET GATEWAY
 #WHEN CREATING AN INTERNET GATEWAY, IF VPC ID IS PROVIDED, THE INTERNET GATEWAY WILL BE ATTTACHED TO THE VPC DURING CREATION.
-#NO ADDTIONAL ATTACHEMENT CONFIGURATION IS NEEDS TO BE DONE.
+#NO ADDTIONAL ATTACHEMENT CONFIGURATION IS NEEDED.
 resource "aws_internet_gateway" "project_gw" {
   vpc_id = aws_vpc.project_vpc.id
 
@@ -48,15 +47,21 @@ resource "aws_internet_gateway" "project_gw" {
   }
 }
 
-# CREATE ROUTE TO ROUTE TABLE
+#GET THE MAIN ROUTE TABLE ASSOCIATED WITH THE VPC
+# DATA IS USE TO GET ATTRIBUTES FROM A RESOURCE ALREADY CREATED ON AWS
+data "aws_vpc" "selected" {
+  id = aws_vpc.project_vpc.id
+}
+
+# CREATE ROUTE TO ROUTE-TABLE
 # ADD GW TO ROUTE TABLE TO ALLOW TRAFFIC TO THE INTERNET
 resource "aws_route" "route" {
-  route_table_id            = "rtb-057aca51f1b88edad"
+  route_table_id            = data.aws_vpc.selected.main_route_table_id
   destination_cidr_block    = "0.0.0.0/0"
   gateway_id                = aws_internet_gateway.project_gw.id
 }
 
-#OUTPUT THE PUBLIC SUBNETS FOR THE CREATION OF THE 2C2 INSTANCE
+#OUTPUT THE PUBLIC SUBNETS FOR THE CREATION OF THE EC2 INSTANCE
 output "public_subnet1_output" {
    value = aws_subnet.public_project_subnet1.id
 }

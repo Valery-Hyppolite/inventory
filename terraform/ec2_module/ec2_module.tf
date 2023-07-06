@@ -4,8 +4,6 @@ module "share_vars" {
   
 }
 
-#variable "key_pair" {}
-
 #CREATE TWO VARIABLES FOR TO TAKE INPUTS FROM OTHER MODULES
 variable "public_subnet1" {}
 variable "security_group_id" {}

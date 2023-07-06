@@ -6,7 +6,7 @@ module "share_vars" {
 #create a variable to take in the vpc_id as an input from the vpc module. 
 variable "vpc_id" {}    
 
-#CREATE A VPC ALLOW EGRESS TO EVERYWHERE, INGRESS TO PORT 80,443 AND 22 WITH MY IP ADDRESS
+#CREATE A SECURITY GROUP, ALLOW EGRESS TO EVERYWHERE, INGRESS TO PORT 80,443 AND 22.
 resource "aws_security_group" "project_sgrp" {
   name        = "project_sgrp${module.share_vars.env_suffix}"
   description = "Allow TLS inbound traffic"
@@ -27,7 +27,6 @@ resource "aws_security_group" "project_sgrp" {
     to_port          = 80
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
   }
 
   ingress {
@@ -36,7 +35,6 @@ resource "aws_security_group" "project_sgrp" {
     to_port          = 22
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
-    # cidr_blocks      =  [module.share_vars.my_ip]
   }
 
   egress {
@@ -44,7 +42,6 @@ resource "aws_security_group" "project_sgrp" {
     to_port          = 0
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
   }
 
   tags = {
