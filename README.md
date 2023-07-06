@@ -7,8 +7,9 @@ Introducing an inventory management system designed to efficiently track product
 * Check customers' information and see all orders associated with each customer. 
 
 ## # Deployement
+* Deployed infracture as code using terraform
 * Created both a local and deployment docker file
-* Packaged project with docker-comapose
+* Packaged project with docker-compose
 * Deployed project on AWS EC2 instance with docker
 
 
