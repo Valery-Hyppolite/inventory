@@ -7,7 +7,6 @@
 *.tfvars
 *.terraform.lock.hcl
 dev.tfvars
-variables.tf
 
 # Exclude temporary or sensitive files
 *.tmp
